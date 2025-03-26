@@ -147,12 +147,12 @@ async function updateUser(request, response, next) {
 
 async function changePassword(request, response, next) {
   // TODO: Implement this function
-  // const id = request.params.id;
-  // const {
-  //   old_password: oldPassword,
-  //   new_password: newPassword,
-  //   confirm_new_password: confirmNewPassword,
-  // } = request.body;
+  const id = request.params.id;
+  const {
+  old_password: oldPassword,
+  new_password: newPassword,
+  confirm_new_password: confirmNewPassword,
+  } = request.body;
   //
   // Make sure that:
   // - the user exists by checking the user ID
@@ -191,6 +191,20 @@ async function deleteUser(request, response, next) {
   }
 }
 
+async function userLogin(request){
+    
+  const {email ,password} = request.body
+
+    if(!password){
+      throw errorResponder(errorTypes.VALIDATION_ERROR, 'INVALID_PASSWORD');
+    }
+
+    else{
+      message:"success"
+    }
+  
+}
+
 module.exports = {
   getUsers,
   getUser,
@@ -198,4 +212,5 @@ module.exports = {
   updateUser,
   changePassword,
   deleteUser,
+  userLogin
 };
